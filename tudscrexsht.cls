@@ -8,17 +8,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{tudscrexsht}[2016/03/29 LaTeX Class for Exercise Sheets in TUD Corporate Design (based on KOMA-Script class tudscrartcl)]
 
-
 % --- Setzt auf tudform-Klasse auf ---
-\LoadClass[english,cdmath=off]{tudscrartcl} %ngerman
-
+\LoadClass[cdmath=off]{tudscrartcl}
 
 % --- Benoetigte Pakete ---
 %\RequirePackage{selinput}\SelectInputMappings{adieresis={ä},germandbls={ß}}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-\RequirePackage[english]{babel}
-\RequirePackage[english]{isodate}
+\RequirePackage{babel}
+\RequirePackage{isodate}
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -51,41 +49,60 @@
 \linespread{1.2}
 \def\arraystretch{1.3}
 
-
-% --- Option fuer deutsche Sprache deklarieren ---
-\DeclareOption{german}{
-  \faculty{Fakultät Informatik}
-  \institute{Institut für Theoretische Informatik}
-  \chair{Lehrstuhl für Automatentheorie}
-  \renewcommand{\@exercisesheet}{Übungsblatt}
-  \renewcommand{\@exercise}{Aufgabe}
-  \renewcommand{\@solution}{Lösung}
-  \renewcommand{\@hints}{Lösungshinweise}
-  \renewcommand{\@hint}{Hinweis}
-}
-
-
 % --- Sprachspezifika ---
-\faculty{Faculty of Computer Science}
-\institute{Institute of Theoretical Computer Science}
-\chair{Chair of Automata Theory}
 \title{}
-\newcommand{\@exercisesheet}{Exercise Sheet}
-\newcommand{\@exercise}{Exercise}
-\newcommand{\@solution}{Solution}
-\newcommand{\@hints}{Hints}
-\newcommand{\@hint}{Hint}
+  
+% --- Option fuer deutsche Sprache deklarieren ---
+\newif\if@german
+\@germanfalse
+\DeclareOption{german}{\@germantrue}
 
 \ProcessOptions\relax
 
+\if@german
+  \PassOptionsToClass{ngerman}{tudscrartcl}
+  \PassOptionsToPackage{ngerman}{babel}
+  \PassOptionsToPackage{ngerman}{isodate}
+  \faculty{Fakultät Informatik}
+  \institute{Institut für Theoretische Informatik}
+  \chair{Lehrstuhl für Automatentheorie}
+  \newcommand{\@exercisesheet}{Übungsblatt}
+  \newcommand{\@exercise}{Aufgabe}
+  \newcommand{\@solution}{Lösung}
+  \newcommand{\@hints}{Lösungshinweise}
+  \newcommand{\@hint}{Hinweis}
+\else
+  \PassOptionsToClass{english}{tudscrartcl}
+  \PassOptionsToPackage{english}{babel}
+  \PassOptionsToPackage{english}{isodate}
+  \faculty{Faculty of Computer Science}
+  \institute{Institute of Theoretical Computer Science}
+  \chair{Chair of Automata Theory}
+  \newcommand{\@exercisesheet}{Exercise Sheet}
+  \newcommand{\@exercise}{Exercise}
+  \newcommand{\@solution}{Solution}
+  \newcommand{\@hints}{Hints}
+  \newcommand{\@hint}{Hint}
+\fi
+
+\let\@date\undefined
+\let\date\undefined
 \newcommand{\@term}{}
 %\newcommand{\@course}{}
 \newcommand{\@sheet}{}
 \newcommand{\@topic}{}
+\newcommand{\@date}{}
 \newcommand{\term}[1]{\renewcommand{\@term}{#1}}
 %\newcommand{\course}[1]{\renewcommand{\@course}{#1}}
 \newcommand{\sheet}[1]{\renewcommand{\@sheet}{#1}}
 \newcommand{\topic}[1]{\renewcommand{\@topic}{#1}}
+\newcommand{\date}[2][]{
+  \if\relax\detokenize{#1}\relax
+    \renewcommand{\@date}{\printdate{#2}}
+  \else
+    \renewcommand{\@date}{\daterange{#1}{#2}}
+  \fi
+}
 \newcommand{\firstexercise}[1]{\addtocounter{exercise}{#1}\addtocounter{exercise}{-1}}
 
 \newcommand{\@printsolutions}{false}
