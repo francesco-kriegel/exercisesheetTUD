@@ -10,6 +10,9 @@
 % --- Setzt auf tudform-Klasse auf --- %
 \LoadClass[cdmath=off,cdfont=off]{tudscrartcl}
 \RequirePackage[default]{opensans}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+% \RequirePackage{selinput}\SelectInputMappings{adieresis={ä},germandbls={ß}}
 
 % --- Option für sansmath Schriften --- %
 \newif\if@sansmath
@@ -64,9 +67,6 @@
 \fi
 
 % --- Benötigte Pakete --- %
-%\RequirePackage{selinput}\SelectInputMappings{adieresis={ä},germandbls={ß}}
-\RequirePackage[T1]{fontenc}
-\RequirePackage[utf8]{inputenc}
 \RequirePackage{babel}
 \RequirePackage{isodate}
 
@@ -202,5 +202,5 @@
   {\Large\bfseries\@course}~\hfill~\@term\\[1ex]%
   {\large{\bfseries\@title}}~\hfill~\@date\\[1ex]%
   {\@author}\\%
-%   \smallskip%
+  % \smallskip%
 }
