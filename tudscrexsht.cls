@@ -9,7 +9,41 @@
 \ProvidesClass{tudscrexsht}[2016/03/29 LaTeX Class for Exercise Sheets in TUD Corporate Design (based on KOMA-Script class tudscrartcl)]
 
 % --- Setzt auf tudform-Klasse auf ---
-\LoadClass[cdmath=off]{tudscrartcl}
+\LoadClass[cdmath=off,cdfont=off]{tudscrartcl}
+\RequirePackage[default]{opensans}
+  
+% --- Option fuer deutsche Sprache deklarieren ---
+\newif\if@german
+\@germanfalse
+\DeclareOption{german}{\@germantrue}
+
+\ProcessOptions\relax
+
+\if@german
+  \PassOptionsToClass{ngerman}{tudscrartcl}
+  \PassOptionsToPackage{ngerman}{babel}
+  \PassOptionsToPackage{ngerman}{isodate}
+  \faculty{Fakultät Informatik}
+  \institute{Institut für Theoretische Informatik}
+  \chair{Lehrstuhl für Automatentheorie}
+  \newcommand{\@exercisesheet}{Übungsblatt}
+  \newcommand{\@exercise}{Aufgabe}
+  \newcommand{\@solution}{Lösung}
+  \newcommand{\@hints}{Lösungshinweise}
+  \newcommand{\@hint}{Hinweis}
+\else
+  \PassOptionsToClass{english}{tudscrartcl}
+  \PassOptionsToPackage{english}{babel}
+  \PassOptionsToPackage{english}{isodate}
+  \faculty{Faculty of Computer Science}
+  \institute{Institute of Theoretical Computer Science}
+  \chair{Chair of Automata Theory}
+  \newcommand{\@exercisesheet}{Exercise Sheet}
+  \newcommand{\@exercise}{Exercise}
+  \newcommand{\@solution}{Solution}
+  \newcommand{\@hints}{Hints}
+  \newcommand{\@hint}{Hint}
+\fi
 
 % --- Benoetigte Pakete ---
 %\RequirePackage{selinput}\SelectInputMappings{adieresis={ä},germandbls={ß}}
@@ -51,39 +85,6 @@
 
 % --- Sprachspezifika ---
 \title{}
-  
-% --- Option fuer deutsche Sprache deklarieren ---
-\newif\if@german
-\@germanfalse
-\DeclareOption{german}{\@germantrue}
-
-\ProcessOptions\relax
-
-\if@german
-  \PassOptionsToClass{ngerman}{tudscrartcl}
-  \PassOptionsToPackage{ngerman}{babel}
-  \PassOptionsToPackage{ngerman}{isodate}
-  \faculty{Fakultät Informatik}
-  \institute{Institut für Theoretische Informatik}
-  \chair{Lehrstuhl für Automatentheorie}
-  \newcommand{\@exercisesheet}{Übungsblatt}
-  \newcommand{\@exercise}{Aufgabe}
-  \newcommand{\@solution}{Lösung}
-  \newcommand{\@hints}{Lösungshinweise}
-  \newcommand{\@hint}{Hinweis}
-\else
-  \PassOptionsToClass{english}{tudscrartcl}
-  \PassOptionsToPackage{english}{babel}
-  \PassOptionsToPackage{english}{isodate}
-  \faculty{Faculty of Computer Science}
-  \institute{Institute of Theoretical Computer Science}
-  \chair{Chair of Automata Theory}
-  \newcommand{\@exercisesheet}{Exercise Sheet}
-  \newcommand{\@exercise}{Exercise}
-  \newcommand{\@solution}{Solution}
-  \newcommand{\@hints}{Hints}
-  \newcommand{\@hint}{Hint}
-\fi
 
 \let\@date\undefined
 \let\date\undefined
