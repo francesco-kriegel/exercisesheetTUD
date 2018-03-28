@@ -1,0 +1,58 @@
+\documentclass{tudscrexsht} % default math fonts
+% \documentclass[sansmath]{tudscrexsht} % sans math fonts
+% \documentclass[mathpazo]{tudscrexsht} % mathpazo math fonts
+
+\usepackage[
+  breaklinks=true,
+  bookmarks=true,
+  bookmarksnumbered=true,
+  colorlinks=true,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  menucolor=black,
+  urlcolor=black,
+  pdftitle={An exemplary course},
+  pdfauthor={Some professor, an assistant},
+  pdfkeywords={An exemplary course}
+]{hyperref}
+\urlstyle{sf}
+
+% --- Voreinstellungen für Name des Tutoriums etc. ---
+\author{Some professor, an assistant}
+\term{Summer~Semester~2018}
+\course{An exemplary course}
+\date{18.04.2342}
+\topic{Introductory Exercises}
+\sheet{1}
+\printsolutions % comment this out if solutions shall not be printed to the PDF
+
+\begin{document}
+
+\begin{exercise}
+  Let $\Sigma\coloneqq\{a,b,c\}$ and define
+  \begin{alignat*}{1}
+    \mathcal{L}(\Sigma):=\int f\mathrm{d}\mu.
+  \end{alignat*}
+  We further test some formulae as follows.
+
+  $C=A\sqcap B\sqcap\exists r.A\sqcap\forall r.(B\sqcap\exists s.A)$
+\end{exercise}
+
+\begin{hint*}
+  Use your brain.
+\end{hint*}
+
+\begin{hint}
+  This is too easy!
+\end{hint}
+
+\begin{exercise*}
+  This is a hard exercise...
+\end{exercise*}
+
+\begin{solution}
+  TBA
+\end{solution}
+
+\end{document}
