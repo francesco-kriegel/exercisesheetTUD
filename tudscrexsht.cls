@@ -172,7 +172,7 @@
 \newtheorem*{hint}{\@hint}
 \NewEnviron{hint*}{%
   \begin{hint}%
-    \rotateandreflect{\BODY}%
+    \expandafter\expandafter\expandafter\rotateandreflect\expandafter{\BODY}%
   \end{hint}%
 }
 
