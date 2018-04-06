@@ -84,6 +84,20 @@
 \RequirePackage{environ}
 \RequirePackage{xparse}
 
+\RequirePackage[
+  pdfprintscaling=None,
+  breaklinks=true,
+  bookmarks=true,
+  bookmarksnumbered=true,
+  colorlinks=true,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  menucolor=black,
+  urlcolor=black
+]{hyperref}
+\urlstyle{sf}
+
 % --- Formatierungseinstellungen --- %
 \linespread{1.2}
 \def\arraystretch{1.3}
@@ -203,4 +217,14 @@
   {\large{\bfseries\@title}}~\hfill~\@date\\[1ex]%
   {\@author}\\%
   % \smallskip%
+}
+
+% --- PDF Metadaten --- %
+\AtBeginDocument{
+  \makeatletter
+    \hypersetup{%
+      pdftitle={\@course},%
+      pdfauthor={\@author},%
+      pdfkeywords={\@course}}%
+  \makeatother
 }
