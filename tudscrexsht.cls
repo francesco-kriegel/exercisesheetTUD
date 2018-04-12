@@ -9,7 +9,7 @@
 
 % --- Setzt auf tudform-Klasse auf --- %
 \LoadClass[cdmath=off,cdfont=off]{tudscrartcl}
-\RequirePackage[default,scale=0.9]{opensans}
+\RequirePackage[default,scale=0.95]{opensans}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 % \RequirePackage{selinput}\SelectInputMappings{adieresis={ä},germandbls={ß}}
