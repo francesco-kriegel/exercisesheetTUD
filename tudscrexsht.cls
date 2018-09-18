@@ -239,7 +239,7 @@
   \vspace*{23mm}%
   \noindent%
   {\Large\bfseries\@course}~\hfill~\@term\\[1ex]%
-  {\large{\bfseries\@title}}~\hfill~\@date
+  {\large{\bfseries\@title}}~\hfill~\@date%
   \ifthenelse{\equal{\@topic}{}}{%
     \\[1ex]%
   }{%
