@@ -74,7 +74,9 @@
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{stmaryrd}
-\RequirePackage{enumitem}\setlist{noitemsep,itemsep=1ex,topsep=1ex}%,leftmargin=*}
+\RequirePackage{enumitem}
+  \setlist{noitemsep,itemsep=1ex,topsep=1ex}%,leftmargin=*}
+  \setlist[description]{font=\normalfont}
 \RequirePackage{xspace}
 \RequirePackage{ifthen}
 \RequirePackage{verbatim}
@@ -97,6 +99,20 @@
   urlcolor=black
 ]{hyperref}
 \urlstyle{sf}
+
+\RequirePackage{cleveref}
+\Crefformat{enumi}{Statement~#2#1#3}
+\Crefrangeformat{enumi}{Statements~#3#1#4 to~#5#2#6}
+\Crefmultiformat{enumi}{Statements~#2#1#3}{ and~#2#1#3}{, #2#1#3}{, and~#2#1#3,}
+\Crefrangemultiformat{enumi}{Statements~#2#1#3}{ and~#2#1#3}{, #2#1#3}{, and~#2#1#3,}
+\Crefformat{exercise}{Exercise~#2#1#3}
+\Crefrangeformat{exercise}{Exercises~#3#1#4 to~#5#2#6}
+\Crefmultiformat{exercise}{Exercises~#2#1#3}{ and~#2#1#3}{, #2#1#3}{, and~#2#1#3,}
+\Crefrangemultiformat{exercise}{Exercises~#2#1#3}{ and~#2#1#3}{, #2#1#3}{, and~#2#1#3,}
+\Crefformat{exercise*}{Exercise~#2#1#3}
+\Crefrangeformat{exercise*}{Exercises~#3#1#4 to~#5#2#6}
+\Crefmultiformat{exercise*}{Exercises~#2#1#3}{ and~#2#1#3}{, #2#1#3}{, and~#2#1#3,}
+\Crefrangemultiformat{exercise*}{Exercises~#2#1#3}{ and~#2#1#3}{, #2#1#3}{, and~#2#1#3,}
 
 % --- Formatierungseinstellungen --- %
 \linespread{1.2}
@@ -156,7 +172,7 @@
                 {\bfseries}                                     % head font 
                 {}                                              % punctuation after head
                 {0.7em}                                         % space after head
-                {\hspace{-0.7em}\clap{\raisebox{1pt}{$\ast$}}\hspace{0.7em}\thmname{#1}\thmnumber{ \@sheet.#2}\thmnote{ (#3)}}
+                {\hspace{-1em}\clap{\raisebox{-4.5pt}{\textbf{\LARGE*}}}\hspace{1em}\thmname{#1}\thmnumber{ \@sheet.#2}\thmnote{ (#3)}}
                                                                 % head spec
 \theoremstyle{bfnote*}
 \newtheorem{exercise*}[exercise]{\@exercise}
@@ -168,6 +184,15 @@
 \NewDocumentCommand{\rotateandreflectsingle}{m}{%
   \rotatebox[origin=c]{180}{\noindent\reflectbox{\vphantom{Ag}#1}} % a space follows
 }
+\newtheoremstyle{remark}                                        % name
+                {}                                              % space above
+                {\baselineskip}                                 % space below
+                {}                                              % body font
+                {}                                              % indent amount
+                {\itshape}                                      % head font 
+                {}                                              % punctuation after head
+                {0.7em}                                         % space after head
+                {\thmname{#1}.}
 \theoremstyle{remark}
 \newtheorem*{hint}{\@hint}
 \NewEnviron{hint*}{%
@@ -198,11 +223,11 @@
 \AtBeginDocument{%
   \ifthenelse{\equal{\@title}{}}{%
     \def\exsht@title{\@exercisesheet~\@sheet}%
-    \ifthenelse{\equal{\@topic}{}}{}{%
-      \edef\exsht@title{\exsht@title~--~\@topic}%
-    }%
+    % \ifthenelse{\equal{\@topic}{}}{}{%
+    %   \edef\exsht@title{\exsht@title~--~\@topic}%
+    % }%
     \ifprintsolutions{%
-      \edef\exsht@title{\exsht@title~--~\@hints}%
+      \edef\exsht@title{\exsht@title~---~\@hints}%
     }%
     \title\exsht@title%
   }{}%
@@ -214,7 +239,12 @@
   \vspace*{23mm}%
   \noindent%
   {\Large\bfseries\@course}~\hfill~\@term\\[1ex]%
-  {\large{\bfseries\@title}}~\hfill~\@date\\[1ex]%
+  {\large{\bfseries\@title}}~\hfill~\@date
+  \ifthenelse{\equal{\@topic}{}}{%
+    \\[1ex]%
+  }{%
+    \\{\large{\bfseries\@topic}}\\[1ex]%
+  }%
   {\@author}\\%
   % \smallskip%
 }
@@ -223,8 +253,9 @@
 \AtBeginDocument{
   \makeatletter
     \hypersetup{%
-      pdftitle={\@course},%
+      pdftitle={\@course, Exercise Sheet \@sheet, \@topic},%
       pdfauthor={\@author},%
-      pdfkeywords={\@course}}%
+      pdfkeywords={\@course, Exercise Sheet \@sheet, \@topic}%
+    }%
   \makeatother
 }
