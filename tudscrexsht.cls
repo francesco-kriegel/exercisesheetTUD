@@ -9,6 +9,11 @@
 
 % --- Setzt auf tudform-Klasse auf --- %
 \LoadClass[cdmath=off,cdfont=off]{tudscrartcl}
+
+% Resolves "LaTeX Error: Too many math alphabets used in version normal."
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
 \RequirePackage[default,scale=0.95]{opensans}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
